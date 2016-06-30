@@ -1,0 +1,9 @@
+{
+  "name": "ZoruaControl",
+  "version": "0.0.1",
+  "description": "MQTT from lambda",
+  "main": "index.js",
+  "dependencies": {
+    "aws-iot-device-sdk": "^1.0.6"
+  }
+}
