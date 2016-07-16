@@ -78,7 +78,7 @@ def on_message(mqttc, obj, msg):
                       lcd_b)
         mqttc.publish("$aws/things/Zorua/shadow/update", json.dumps(device))
         
-#creating a client with client-id=mqtt-test
+#creating a client with client-id=Zorua
 mqttc = mqtt.Client(client_id="Zorua")
 
 mqttc.on_connect = on_connect
@@ -97,10 +97,6 @@ mqttc.tls_set("certs/rootCA.pem",
 #connecting to aws-account-specific-iot-endpoint
 print ("About to connect")
 mqttc.connect("a3d6deevbofb2k.iot.us-east-1.amazonaws.com", port=8883) #AWS IoT service hostname and portno
-
-print ("About to subscribe")
-#the topic to publish to
-#mqttc.subscribe("$aws/things/Zorua/shadow/update", qos=1) #The names of these topics start with $aws/things/thingName/shadow."
 
 #automatically handles reconnecting
 mqttc.loop_forever()
