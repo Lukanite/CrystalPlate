@@ -1,0 +1,15 @@
+GetDisplayIntent what message is on {Plate}
+GetColorIntent what color is {Plate}
+SetMessageIntent {WriteCommand} {Message}
+SetMessageIntent {WriteCommand} {Message} on {Plate}
+SetColorIntent make {Plate} {Color}
+SetColorIntent change the color to {Color}
+SetColorIntent change {Plate} color to {Color}
+SetColorIntent set the color to {Color}
+SetColorIntent {Color}
+SetDisplayIntent write {Message} in {Color}
+SetDisplayIntent write {Message} on {Plate} in {Color}
+ClearDisplayIntent clear {Plate}
+ClearDisplayIntent clear
+AMAZON.HelpIntent help
+AMAZON.CancelIntent cancel

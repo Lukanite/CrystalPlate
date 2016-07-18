@@ -1,0 +1,84 @@
+{
+  "intents": [
+    {
+      "intent": "SetDisplayIntent",
+      "slots": [
+        {
+          "name": "Color",
+          "type": "DISPLAY_COLORS"
+        },
+        {
+          "name": "Message",
+          "type": "SAMPLE_MESSAGES"
+        },
+        {
+          "name": "Plate",
+          "type": "PLATE_NICKNAMES"
+        }
+      ]
+    },
+    {
+      "intent": "SetColorIntent",
+      "slots": [
+        {
+          "name": "Color",
+          "type": "DISPLAY_COLORS"
+        },
+        {
+          "name": "Plate",
+          "type": "PLATE_NICKNAMES"
+        }
+      ]
+    },
+    {
+      "intent": "SetMessageIntent",
+      "slots": [
+        {
+          "name": "WriteCommand",
+          "type": "WRITE_COMMANDS"
+        },
+        {
+          "name": "Message",
+          "type": "SAMPLE_MESSAGES"
+        },
+        {
+          "name": "Plate",
+          "type": "PLATE_NICKNAMES"
+        }
+      ]
+    },
+    {
+      "intent": "GetColorIntent",
+      "slots": [
+        {
+          "name": "Plate",
+          "type": "PLATE_NICKNAMES"
+        }
+      ]
+    },
+    {
+      "intent": "ClearDisplayIntent",
+      "slots": [
+        {
+          "name": "Plate",
+          "type": "PLATE_NICKNAMES"
+        }
+      ]
+    },
+    {
+      "intent": "GetDisplayIntent",
+      "slots": [
+        {
+          "name": "Plate",
+          "type": "PLATE_NICKNAMES"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

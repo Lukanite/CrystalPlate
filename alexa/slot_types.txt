@@ -1,0 +1,45 @@
+DISPLAY_COLORS:
+green
+red
+blue
+teal
+yellow
+purple
+black
+white
+
+PLATE_NICKNAMES:
+the plate
+the display
+it
+the board
+the pi
+the pie
+
+SAMPLE_MESSAGES:
+pick up some milk
+go to the store
+hello world
+how's it going
+give me a call later
+bring an umbrella today
+walk the dog
+walk the cat
+fill up on gas
+buy some chocolate
+it'll be hot today
+i'll be home at 6 pm
+meet me after your meeting
+put the chicken in the fridge
+defrost the chicken
+start cooking the rice at 5
+get tickets for the movie
+fix the computer
+mail the letter
+
+WRITE_COMMANDS:
+write
+right
+write to the display
+write to the board
+send
