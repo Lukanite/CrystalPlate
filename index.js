@@ -13,6 +13,7 @@
 
 var awsIot = require('aws-iot-device-sdk');
 
+//Change these using your own info!
 var device = awsIot.device({
    keyPath: 'b15f15c88b-private.pem.key',
   certPath: 'b15f15c88b-certificate.pem.crt',
@@ -29,10 +30,11 @@ exports.handler = function (event, context) {
          * Uncomment this if statement and populate with your skill's application ID to
          * prevent someone else from configuring a skill that sends requests to this function.
          */
-        
-        if (event.session.application.applicationId !== "amzn1.echo-sdk-ams.app.f301f81c-ad1d-4cb5-904d-892a5cc31d3e") {
+         //Copy your own application ID here for extra security and uncomment!
+        /**
+        if (event.session.application.applicationId !== "amzn1.echo-sdk-ams.app.f301f81c-ad1d-4cb5-904d-xxxxxxxxxxxx") {
              context.fail("Invalid Application ID");
-        }
+        }*/
 
         if (event.session.new) {
             onSessionStarted({requestId: event.request.requestId}, event.session);
@@ -100,7 +102,7 @@ function onIntent(intentRequest, session, callback) {
     } else if ("GetColorIntent" === intentName) {
         getDisplay(intent, session, true, callback);
     } else if ("ClearDisplayIntent" === intentName) {
-        clearDisplay(intent, session, true, callback);
+        clearDisplay(intent, session, callback);
     } else if ("AMAZON.HelpIntent" === intentName) {
         getWelcomeResponse(callback);
     } else if ("AMAZON.StopIntent" === intentName || "AMAZON.CancelIntent" === intentName) {
@@ -151,7 +153,7 @@ function handleSessionEndRequest(callback) {
  * Sets the color on the display and prepares the speech to reply to the user.
  */
 function setColor(intent, session, callback) {
-    var cardTitle = intent.name;
+    var cardTitle = "Color set!";
     var newColorSlot = intent.slots.Color;
     var repromptText = "";
     var sessionAttributes = {};
@@ -200,7 +202,7 @@ function setColor(intent, session, callback) {
  * Sets the message on the display and prepares the speech to reply to the user.
  */
 function setMessage(intent, session, callback) {
-    var cardTitle = intent.name;
+    var cardTitle = "Message set - what color?";
     var newMessageSlot = intent.slots.Message;
     var newMessage = newMessageSlot.value;
     var repromptText = "";
@@ -233,12 +235,12 @@ function setMessage(intent, session, callback) {
  * Sets the message and color on the display and prepares the speech to reply to the user.
  */
 function setDisplay(intent, session, callback) {
-    var cardTitle = intent.name;
     var newMessageSlot = intent.slots.Message;
     var newMessage = newMessageSlot.value;
     var newColorSlot = intent.slots.Color;
     var newColor = newColorSlot.value;
     var color = colorToRGB(newColor);
+    var cardTitle = "Message written in " + newColor + "!";
     var repromptText = "";
     var sessionAttributes = {};
     var shouldEndSession = true;
@@ -293,7 +295,7 @@ function setDisplay(intent, session, callback) {
 }
 
 function clearDisplay(intent, session, callback) {
-    var cardTitle = intent.name;
+    var cardTitle = "Display cleared";
     var sessionAttributes = {};
     var shouldEndSession = true;
     var speechOutput = "The display has been cleared. Thanks for using crystal plate.";
@@ -321,7 +323,7 @@ function clearDisplay(intent, session, callback) {
 function getDisplay(intent, session, coloronly, callback) {
     var publishmessage = JSON.stringify({});
     device.on('message', function (topic, message) {
-        var cardTitle = intent.name;
+        var cardTitle = "Message on Display";
         var sessionAttributes = {};
         var shouldEndSession = false;
         var data = JSON.parse(message);
@@ -329,11 +331,12 @@ function getDisplay(intent, session, coloronly, callback) {
         var color = RGBToColor([data['state']['reported']['color']['r'],
                     data['state']['reported']['color']['g'], 
                     data['state']['reported']['color']['b']]);
-        var speechOutput = "The display has " + message + " written on it in " + color;
+        if (message == "") message = "nothing"
         var repromptText = "Want to change it? Tell me by saying, write I'll be back at five on the display";
+        var speechOutput = "The display has " + message + " written on it in " + color + ". " + repromptText;
         if (coloronly) {
-            speechOutput = "The display color is " + color;
             repromptText = "Want to change it? Tell me by saying, change the display color to blue";
+            speechOutput = "The display color is " + color + ". " + repromptText;
             if (color === "blue") repromptText = "Want to change it? Tell me by saying, change the display color to red";
         }
         callback(sessionAttributes,
