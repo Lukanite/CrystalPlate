@@ -9,7 +9,9 @@ SetColorIntent set the color to {Color}
 SetColorIntent {Color}
 SetDisplayIntent write {Message} in {Color}
 SetDisplayIntent write {Message} on {Plate} in {Color}
+SetDisplayIntent   write {Message} to {Plate} in {Color}
 ClearDisplayIntent clear {Plate}
 ClearDisplayIntent clear
 AMAZON.HelpIntent help
 AMAZON.CancelIntent cancel
+AMAZON.StopIntent stop
