@@ -88,7 +88,7 @@ def on_message(mqttc, obj, msg):
                       lcd_g,
                       lcd_b)
     #Let AWS know we've updated the display
-    mqttc.publish("$aws/things/Zorua/shadow/update", json.dumps(device))
+    mqttc.publish("$aws/things/" + iotThing + "/shadow/update", json.dumps(device))
         
 #creating a client with client-id=Zorua
 mqttc = mqtt.Client(client_id=clientID)
